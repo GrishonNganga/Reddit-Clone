@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index Page</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+</head>
+<body>
+    <div class="nav">
+        <h1>Reddit of 2000</h1>
+    </div>
+    
+    <form action="/" method="POST">
+        Username: <input type="text" name="username"> <br> <br> <br>
+        Say something: <textarea type="text" name="post"></textarea>
+        <button type="submit">Post Something</button>
+    </form>
+
+    {% include 'post_title.html' %} <br> <br><br>
+
+    {% for post in posts %}
+        {% if post.username != 'Rose' %}
+            User: {{ post.username }} <br>
+            Post: {{ post.post }} <br>
+            Timestamp: {{ post.date }} <br> <br>
+        {% endif %}
+    {% endfor %}
+</body>
+</html>
