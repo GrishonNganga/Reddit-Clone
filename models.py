@@ -1,4 +1,6 @@
-from app import mysql
+from flask_sqlalchemy import SQLAlchemy
+
+mysql = SQLAlchemy()
 
 class User(mysql.Model):
     id = mysql.Column(mysql.Integer, primary_key = True) 
@@ -14,4 +16,4 @@ class User(mysql.Model):
 
 class Post(mysql.Model):
     id = mysql.Column(mysql.Integer, primary_key = True)
-    body = mysql.Column(mysql.String(1000), nullable = False)
+    body = mysql.Column(mysql.String(1001), nullable = False)
