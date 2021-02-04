@@ -1,7 +1,7 @@
 from flask import Blueprint, flash
 from flask import request, render_template, redirect, url_for
 from reddit import manager
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 
 from models import User
 from datetime import datetime
@@ -83,8 +83,8 @@ def logout():
 @login_required
 def index():
     if request.method == 'POST':
-        if 'username' in request.form and 'post' in request.form:
-            username = request.form['username']
+        if 'post' in request.form:
+            username = current_user.id
             post = request.form['post']
             posts.append({
                 'username': username,

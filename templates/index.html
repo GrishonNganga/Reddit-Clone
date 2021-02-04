@@ -28,6 +28,7 @@
                 
             </div>
         </div>
+        {% for post in posts %}
 
         <div class="mt-12">
             <div class="md:w-1/2 md:ml-48 mb-4">
@@ -36,17 +37,10 @@
                         <form action="/" method="POST">
                             <div class="flex flex-col w-full">
                                 <div class="w-full text-gray-600 text-xs ml-4 md:ml-8">
-                                    Posted by <span class="text-gray-800 font-semibold">Grishon</span>
+                                    Posted by <span class="text-gray-800 font-semibold">{{ current_user.username }} {{ post.date }}</span>
                                 </div>
                                 <div class="ml-4 md:ml-8 mt-1.5">
-                                    Hi fellow Flaskers :) <br>
-
-                                    I'm making a Flask app and until recently default settings for Flask-CORS extension was handling all POST requests to one of my endpoints. <br>
-
-                                    Until recently I simply went with the defaults which worked like a charm: <br>
-
-                                    from flask_cors import CORS <br>
-                                    ...
+                                    {{ post.post }}
                                 </div>
                             </div>
                             
@@ -58,16 +52,11 @@
             </div>
             
         </div>
+        {% endfor %}
         
         
 
-        {% for post in posts %}
-            {% if post.username != 'Rose' %}
-                User: {{ post.username }} <br>
-                Post: {{ post.post }} <br>
-                Timestamp: {{ post.date }} <br> <br>
-            {% endif %}
-        {% endfor %}
+        
     </div>
     
 </body>
