@@ -1,9 +1,9 @@
 from flask_sqlalchemy import SQLAlchemy
-
+from flask_login import UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 mysql = SQLAlchemy()
 
-class User(mysql.Model):
+class User(UserMixin, mysql.Model):
     id = mysql.Column(mysql.Integer, primary_key = True) 
     username = mysql.Column(mysql.String(50), nullable = False)
     password = mysql.Column(mysql.String(200), nullable = False)

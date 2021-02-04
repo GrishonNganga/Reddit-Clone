@@ -88,10 +88,6 @@ function validate_sign_in(){
         with_error.push(password)
     }
 
-    if (! is_email_valid(email)){
-        with_error.push(email)
-    }
-
     display_errors(with_error)
     
     if (with_error.length > 0){
