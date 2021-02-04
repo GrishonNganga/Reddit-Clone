@@ -1,9 +1,10 @@
 from flask import Blueprint, flash
 from flask import request, render_template, redirect, url_for
-from reddit import manager
 from flask_login import login_user, logout_user, login_required, current_user
 
-from models import User
+from models import User, Post, mysql
+from reddit import manager
+
 from datetime import datetime
 
 main = Blueprint("main", __name__)
@@ -86,14 +87,17 @@ def index():
         if 'post' in request.form:
             username = current_user.id
             post = request.form['post']
-            posts.append({
-                'username': username,
-                'post': post,
-                'date': datetime.now()
-            })
-            print(posts)
+            # posts.append({
+            #     'username': username,
+            #     'post': post,
+            #     'date': datetime.now()
+            # })
+            post = Post(body = post, user_id = current_user.id)
+            mysql.session.add(post)
+            mysql.session.commit()
             redirect('/')
-    return render_template('index.html', posts = posts )
+    posts = Post.query.all()
+    return render_template('index.html', posts = posts)
 
 
 @main.route('/home', methods=['GET', 'POST'])

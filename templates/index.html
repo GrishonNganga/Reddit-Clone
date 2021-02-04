@@ -37,10 +37,10 @@
                         <form action="/" method="POST">
                             <div class="flex flex-col w-full">
                                 <div class="w-full text-gray-600 text-xs ml-4 md:ml-8">
-                                    Posted by <span class="text-gray-800 font-semibold">{{ current_user.username }} {{ post.date }}</span>
+                                    Posted by <span class="text-gray-800 font-semibold">{{ current_user.username }} at {{ post.post_date.strftime('%Y-%m-%d') }}</span>
                                 </div>
                                 <div class="ml-4 md:ml-8 mt-1.5">
-                                    {{ post.post }}
+                                    {{ post.body }}
                                 </div>
                             </div>
                             
