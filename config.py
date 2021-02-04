@@ -5,8 +5,8 @@ class Config:
 
 class DevConfig(Config):
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:@localhost/redditclone"
-    
+    SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:@localhost/reddit"
+    SECRET_KEY = "verysecretkeyforthisapp"
 
 
 class ProdConfig(Config):

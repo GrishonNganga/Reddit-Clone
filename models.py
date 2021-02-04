@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 
+from werkzeug.security import check_password_hash, generate_password_hash
 mysql = SQLAlchemy()
 
 class User(mysql.Model):
@@ -10,6 +11,13 @@ class User(mysql.Model):
     def save(self):
         mysql.session.add(self)
         mysql.session.commit()
+
+    def set_password(self, password):
+        pass_hash = generate_password_hash(password)
+        self.password = pass_hash
+
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
     #TODO Add the rest of the methods (Password Hashing, Password Unhashing) 
 
