@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Reddit </title>
+        <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+    </head>
+    <body>
+        <div class="">
+            {% include 'navbar.html' %}
+            <div class="flex items-center justify-center">
+                <div class="w-full md:w-1/2 xl:w-1/3">
+                    <div class="flex w-screen md:w-auto p-8 font-semibold text-blue-400">
+                        <span id="sign-in" class="sign-in inline-block md:hidden w-1/2 text-center pb-3 border-b-2 border-blue-600 cursor-pointer" onclick="toggle_nav(this)">SIGN IN</span>
+                        <span id="sign-up" class="sign-up inline-block md:hidden w-1/2 text-center pb-3 cursor-pointer" onclick="toggle_nav(this)">SIGN UP</span>
+                        <span id="sign-in2" class="sign-in hidden md:inline-block w-1/2 text-center pb-3 cursor-pointer border-b-2 border-blue-600" onclick="toggle_nav(this)">I HAVE AN ACCOUNT</span>
+                        <span id="sign-up2" class="sign-up hidden md:inline-block w-1/2 text-center pb-3 cursor-pointer"  onclick="toggle_nav(this)">I'M A NEW HERE</span>
+                    </div>
+                    <div id="sign-in-div">
+                        <div class="sign-in-form ml-6 mr-6 md:ml-0 md:mr-0">
+                            <form action="/login" id="sign-in-form" method="POST">
+                                <input name="username" type="email" id="sign-in-email" class="border-2 border-gray-300 w-full h-5 p-6 mb-5 rounded-md" placeholder="Username">
+                                <input name="password" type="password" id="sign-in-password" class="border-2 border-gray-300 w-full h-5 p-6 rounded-md" placeholder="Password">
+                            </form>
+                        </div>
+                        <div class="ml-6 mr-6 md:ml-0 md:mr-0 mt-4 mb-4">
+                            <a href="#" class="text-sm">Forgot your password</a>
+                        </div>
+                        <div class="ml-6 mr-6 md:ml-0 md:mr-0 mt-4 mb-4">
+                            <span class="text-sm">By clicking below, I agree to the Terms of Use and have read the Privacy Statement.</span>
+                        </div>
+                        <div class="ml-6 mr-6 md:ml-0 md:mr-0">
+                            <button type="submit" class="p-5 bg-blue-500 w-full hover:bg-blue-400 text-white font-bold cursor-pointer rounded-md" onclick="submit_form(document.getElementById('sign-in-form'))">Sign In</button>
+                        </div>
+                    </div>
+                    <div id="sign-up-div" class="hidden">
+                        <div class="sign-in-form ml-6 mr-6 md:ml-0 md:mr-0">
+                            <form action="/register" id = "sign-up-form" method="POST">
+                                <input name="username" type="email" id="sign-up-email" class="border-2 border-gray-300 w-full h-5 p-6 mb-5 rounded-md" placeholder="Username">
+                                <input name="password" type="password" id="sign-up-password" class="border-2 border-gray-300 w-full h-5 p-6 mb-5 rounded-md" placeholder="Password">
+                                <input name="confirmpassword" type="password" id="sign-up-confirmpassword" class="border-2 border-gray-300 w-full h-5 p-6 rounded-md" placeholder="Password">
+                            </form>
+                        </div>
+                        <div class="ml-6 mr-6 md:ml-0 md:mr-0 mt-4 mb-4">
+                            <a href="#" class="text-sm">Forgot your password</a>
+                        </div>
+                        <div class="ml-6 mr-6 md:ml-0 md:mr-0 mt-4 mb-4">
+                            <span class="text-sm">By clicking below, I agree to the Terms of Use and have read the Privacy Statement.</span>
+                        </div>
+                        <div class="ml-6 mr-6 md:ml-0 md:mr-0">
+                            <button type="submit" class="p-5 bg-blue-500 w-full hover:bg-blue-400 text-white font-bold cursor-pointer rounded-md" onclick="submit_form(document.getElementById('sign-up-form'))">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        <script src="{{url_for('static', filename='js/index.js')}}"></script>
+    </body>
+</html>

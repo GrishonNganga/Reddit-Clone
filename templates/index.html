@@ -6,25 +6,58 @@
     <title>Index Page</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
 </head>
-<body>
-    <div class="nav">
-        <h1>Reddit of 2000</h1>
+<body class="bg-gray-200">
+    <div class="w-full">
+        {% include 'navbar.html' %}
+        <div class="md:w-1/2 md:ml-48 mt-12">
+            <div class="flex md:justify-end">
+                <div class="w-full md:border-2 md:border-gray-300 md:rounded-md pt-2 pb-2 md:p-4 justify-items-center bg-white">
+                    <form action="/" method="POST">
+                        <div class="flex flex-col md:flex-row w-full">
+                            <div class="w-full md:w-5/6">
+                                <textarea class="border-2 border-gray-300 rounded-md w-full" type="text" name="post"  placeholder="Post something"></textarea>
+                            </div>
+                            <div class="ml-2">
+                                <button type="submit" class="bg-blue-500 text-white pt-1.5 font-semibold mt-2 pb-1.5 pl-5 pr-5 ml-1 rounded-full">Post</button>
+                            </div>
+                        </div>
+                        
+                    </form>
+
+                </div>
+                
+            </div>
+        </div>
+        {% for post in posts %}
+
+        <div class="mt-12">
+            <div class="md:w-1/2 md:ml-48 mb-4">
+                <div class="flex md:justify-end">
+                    <div class="w-full md:border-2 md:border-gray-300 md:rounded-md pt-1 pb-2 md:pb-2 justify-items-center bg-white">
+                        <form action="/" method="POST">
+                            <div class="flex flex-col w-full">
+                                <div class="w-full text-gray-600 text-xs ml-4 md:ml-8">
+                                    Posted by <span class="text-gray-800 font-semibold">{{ current_user.username }} at {{ post.post_date.strftime('%Y-%m-%d') }}</span>
+                                </div>
+                                <div class="ml-4 md:ml-8 mt-1.5">
+                                    {{ post.body }}
+                                </div>
+                            </div>
+                            
+                        </form>
+
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        {% endfor %}
+        
+        
+
+        
     </div>
     
-    <form action="/" method="POST">
-        Username: <input type="text" name="username"> <br> <br> <br>
-        Say something: <textarea type="text" name="post"></textarea>
-        <button type="submit">Post Something</button>
-    </form>
-
-    {% include 'post_title.html' %} <br> <br><br>
-
-    {% for post in posts %}
-        {% if post.username != 'Rose' %}
-            User: {{ post.username }} <br>
-            Post: {{ post.post }} <br>
-            Timestamp: {{ post.date }} <br> <br>
-        {% endif %}
-    {% endfor %}
 </body>
 </html>

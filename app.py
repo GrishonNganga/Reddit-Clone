@@ -1,24 +1,6 @@
-from flask import Flask, request, render_template, redirect
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from reddit import create_app
 
-from routes import main
-from config import DevConfig
+app = create_app('dev')
 
-mysql = SQLAlchemy()
-migrate = Migrate()
-
-from datetime import datetime
-
-def create_app(config_value):
-        
-    app = Flask(__name__)
-    
-    app.config.from_object(DevConfig)
-
-    mysql.init_app(app)
-    migrate.init_app(app, mysql)
-
-    app.register_blueprint(main)
-
-    return app
+if __name__ == '__main__':
+    app.run()
